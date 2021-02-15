@@ -1,5 +1,5 @@
 subprojects {
-    version = '2.0-SNAPSHOT'
+    version = '3.0-modularity'
 
     apply plugin: 'java'
     apply plugin: 'eclipse'
