@@ -1,5 +1,14 @@
+plugins {
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
 dependencies {
     compile project(":reactfx")
+}
+
+javafx {
+    version = "15.0.1"
+    modules = [ 'javafx.web', 'javafx.controls' ]
 }
 
 task fatJar(type: Jar, dependsOn: classes) {
