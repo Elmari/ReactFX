@@ -30,6 +30,8 @@ javadoc {
             'http://docs.oracle.com/javase/8/docs/api/',
             'http://docs.oracle.com/javase/8/javafx/api/'
     ]
+
+    enabled = false
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
