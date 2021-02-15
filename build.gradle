@@ -3,12 +3,11 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'eclipse'
-    apply plugin: 'osgi'
 
     repositories {
         mavenCentral()
     }
 
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
 }

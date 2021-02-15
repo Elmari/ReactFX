@@ -1,5 +1,10 @@
-apply plugin: 'maven'
-apply plugin: 'signing'
+plugins {
+
+    id 'maven'
+    id 'signing'
+
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
 
 group = 'org.reactfx'
 
@@ -11,14 +16,19 @@ dependencies {
     testCompile group: 'com.pholser', name: 'junit-quickcheck-generators', version: '0.4'
 }
 
+javafx {
+    version = "15.0.1"
+    modules = [ 'javafx.graphics', 'javafx.controls' ]
+}
+
 javadoc {
     // ignore missing Javadoc comments or tags
     options.addStringOption('Xdoclint:all,-missing', '-quiet')
-    
+
     // resolve links to Java and JavaFX Javadocs
     options.links = [
-        'http://docs.oracle.com/javase/8/docs/api/',
-        'http://docs.oracle.com/javase/8/javafx/api/'
+            'http://docs.oracle.com/javase/8/docs/api/',
+            'http://docs.oracle.com/javase/8/javafx/api/'
     ]
 }
 
@@ -54,7 +64,7 @@ if(doUploadArchives) {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-              authentication(userName: sonatypeUsername, password: sonatypePassword)
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
             }
 
             snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots') {
@@ -66,13 +76,13 @@ if(doUploadArchives) {
                 packaging 'jar'
                 description 'Reactive event streams for JavaFX'
                 url 'http://www.reactfx.org/'
-               
+
                 scm {
                     url 'scm:git@github.com:TomasMikula/ReactFX.git'
                     connection 'scm:git@github.com:TomasMikula/ReactFX.git'
                     developerConnection 'scm:git@github.com:TomasMikula/ReactFX.git'
                 }
-               
+
                 licenses {
                     license {
                         name 'The BSD 2-Clause License'
@@ -80,7 +90,7 @@ if(doUploadArchives) {
                         distribution 'repo'
                     }
                 }
-               
+
                 developers {
                     developer {
                         name 'Tomas Mikula'
@@ -92,3 +102,9 @@ if(doUploadArchives) {
 }
 
 uploadArchives.onlyIf { doUploadArchives }
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += [
+            '--add-exports=javafx.base/com.sun.javafx.binding=reactfx'
+    ]
+}
