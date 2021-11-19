@@ -1,13 +1,11 @@
 subprojects {
     version = '3.0-modularity'
-
     apply plugin: 'java'
-    apply plugin: 'eclipse'
 
     repositories {
         mavenCentral()
     }
 
-    sourceCompatibility = '11'
-    targetCompatibility = '11'
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }

@@ -3,28 +3,10 @@ plugins {
 }
 
 dependencies {
-    compile project(":reactfx")
+    implementation project(":reactfx")
 }
 
 javafx {
-    version = "15.0.1"
+    version = "17"
     modules = [ 'javafx.web', 'javafx.controls' ]
-}
-
-task fatJar(type: Jar, dependsOn: classes) {
-    appendix = 'fat'
-    from sourceSets.main.output
-    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
-}
-
-assemble.dependsOn fatJar
-
-task AndGateDemo(type: JavaExec, dependsOn: classes) {
-    main = 'org.reactfx.inhibeans.demo.AndGateDemo'
-    classpath = files(sourceSets.main.output, configurations.runtime)
-}
-
-task FibTest(type: JavaExec, dependsOn: classes) {
-    main = 'org.reactfx.inhibeans.demo.FibTest'
-    classpath = files(sourceSets.main.output, configurations.runtime)
 }
