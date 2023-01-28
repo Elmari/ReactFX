@@ -12,7 +12,7 @@ dependencies {
 }
 
 javafx {
-    version = "17"
+    version = "19.0.2.1"
     modules = [ 'javafx.graphics', 'javafx.controls' ]
 }
 
@@ -25,27 +25,4 @@ tasks.withType(JavaCompile) {
 task sourcesJar(type: Jar) {
     archiveClassifier = 'sources'
     from sourceSets.main.allSource
-}
-
-
-publishing {
-    repositories {
-        maven {
-            url "${writeUrl}"
-            credentials {
-                username "${mavenUsername}"
-                password "${mavenPassword}"
-            }
-        }
-    }
-
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            artifact sourcesJar
-            group = 'com.bullhead.javafx'
-            version = '1.0.0'
-            artifactId = 'reactfx'
-        }
-    }
 }

@@ -9,7 +9,7 @@ import javafx.beans.value.ObservableValue;
 
 import org.reactfx.Subscription;
 
-abstract class FlatMapped<T, U, O extends ObservableValue<U>>
+abstract class FlatMapped<T, U, O extends ObservableValue<? extends U>>
 extends ValBase<U> {
     final Val<O> src;
 
@@ -60,7 +60,7 @@ extends ValBase<U> {
     }
 }
 
-class FlatMappedVal<T, U, O extends ObservableValue<U>>
+class FlatMappedVal<T, U, O extends ObservableValue<? extends U>>
 extends FlatMapped<T, U, O> {
 
     public FlatMappedVal(ObservableValue<T> src, Function<? super T, O> f) {

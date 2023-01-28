@@ -264,7 +264,7 @@ extends ObservableValue<T>, Observable<Consumer<? super T>> {
      * when this {@linkplain Val} is empty.
      */
     default <U> Val<U> flatMap(
-            Function<? super T, ? extends ObservableValue<U>> f) {
+            Function<? super T, ? extends ObservableValue<? extends U>> f) {
         return flatMap(this, f);
     }
 
@@ -474,7 +474,7 @@ extends ObservableValue<T>, Observable<Consumer<? super T>> {
 
     static <T, U> Val<U> flatMap(
             ObservableValue<T> src,
-            Function<? super T, ? extends ObservableValue<U>> f) {
+            Function<? super T, ? extends ObservableValue<? extends U>> f) {
         return new FlatMappedVal<>(src, f);
     }
 
