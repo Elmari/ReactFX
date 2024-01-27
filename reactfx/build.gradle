@@ -1,6 +1,6 @@
 plugins {
     id 'maven-publish'
-    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 group = 'org.reactfx'
