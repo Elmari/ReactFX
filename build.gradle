@@ -1,5 +1,4 @@
 subprojects {
-    version = '3.0-modularity'
     apply plugin: 'java'
 
     repositories {
